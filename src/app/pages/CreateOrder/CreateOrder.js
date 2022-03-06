@@ -40,11 +40,19 @@ export default function CreateOrder() {
   const [type , setType] =  useState("");
   const [start_loc  , setStartLoc] = useState("");
   const [end_loc  , setEndLoc] = useState("");
-  const [weight , setWeight] = useState(0);
-  const [cost , setCost] = useState(0);
+  const [weight , setWeight] = useState({});
+  const [cost , setCost] = useState("");
   const [material , setMaterial] = useState("");
   const [union_id , setUnionId] = useState(null);
   
+  const list = [
+    {"weight": 100 , "cost": 1000},
+    {"weight":  300, "cost": 1000},
+    {"weight": 500 , "cost": 3000},
+    {"weight": 1000, "cost": 5000},
+    {"weight": 1500 , "cost": 7000}
+  ];
+
   useEffect(
     ()=>{
       const data = {
@@ -58,12 +66,12 @@ export default function CreateOrder() {
           setUnions(res['data']);
         });
       
-      const url1 = `transporter/getall`;
-      fetchDetails(data , url ).then(
-        (res)=>{
-          console.log(res['data']);
-          setTransporters(res['data']);
-        });
+      // const url1 = `transporter/getall`;
+      // fetchDetails(data , url1 ).then(
+      //   (res)=>{
+      //     console.log(res['data']);
+      //     setTransporters(res['data']);
+      //   });
 
     },[]
   );
@@ -80,9 +88,9 @@ export default function CreateOrder() {
         pickup_date: date_value[0],
         drop_date: date_value[1],
         transaction_id:null,
-        weight: weight ,
+        weight: weight?.weight.toString() ,
         material:material,
-        cost:cost,
+        cost:weight?.cost.toString(),
         shipper_id: accountDetails?.id,
         driver_id:null,
         truck_id: null,
@@ -128,8 +136,7 @@ export default function CreateOrder() {
 
   }
   const handleChange5 = (e)=>{
-    setWeight(e.target.value);
-
+    setWeight(list[e.target.value]);
   }
   const handleChange6 = (e)=>{
     setCost(e.target.value);
@@ -174,9 +181,9 @@ export default function CreateOrder() {
                 onChange={handleChange3}
               >
                 
-                <MenuItem value={"Small"}>Small</MenuItem>
-                <MenuItem value={"Medium"}>Medium</MenuItem>
-                <MenuItem value={"Large"}>Large</MenuItem>
+                <MenuItem value={"Small"}>Small (capacity upto 300)</MenuItem>
+                <MenuItem value={"Medium"}> Medium (capacity upto 500)</MenuItem>
+                <MenuItem value={"Large"}>Large (capacity upto 1000)</MenuItem>
               </Select>
             </FormControl>
 
@@ -189,24 +196,31 @@ export default function CreateOrder() {
                 value={material}
                 onChange={handleChange4}
             />
-            <TextField
-                fullWidth
-                autoComplete="Weight"
-                type="number"
-                label="Weight"
-                key = "weight"
-                value = {weight}
-                onChange={handleChange5}
 
-            />
+            <FormControl fullWidth>
+              <InputLabel id="demo-simple-select-label">Weight</InputLabel>
+              <Select
+                itemType='text'
+                label="Weight"
+                value = {weight?.weight}
+                onChange={handleChange5}
+                // onChange={}
+              >
+                {
+                  list.map((item ,idx) => (
+                   <MenuItem  value={idx}>{item?.weight} kg </MenuItem>
+                  ))
+                }
+              </Select>
+            </FormControl>
             <TextField
                 fullWidth
-                autoComplete="Cost"
-                type="number"
+                type="text"
                 label="Cost"
-                key = "cost"
-                value = {cost}
-                onChange={handleChange6}
+                value = {weight?.cost}
+                // onChange={handleChange6}
+                InputLabelProps={{ shrink: true }}
+                disabled
 
             />
             <FormControl fullWidth>
