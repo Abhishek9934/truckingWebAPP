@@ -1,0 +1,43 @@
+.textCenter{
+    text-align: center;
+}
+.paddingTop{
+    padding-top: 100px;
+}
+.blue
+{
+    background-color: aqua;
+}
+
+.orange
+{
+    background-color: red;
+}
+.green
+{
+    background-color: green;
+}
+.loginImage
+{
+    position:relative;
+    max-width: 100%;
+    bottom:-100px;
+    
+}
+
+.loginSideBar{
+    width: 100%;
+    max-width: 500px;
+    height:100vh;
+    max-height: 100vh;
+    margin-left:100px;
+
+}
+
+.loginForm{
+    
+    margin-right: 200px;
+    margin-left: 150px;
+    align-items: center;
+    margin-top: 200px;
+}
