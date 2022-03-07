@@ -133,7 +133,7 @@ export default function LoginForm() {
             </Link>
             </Stack>
 
-            <Button
+            <LoadingButton
             fullWidth
             size="large"
             type="submit"
@@ -141,7 +141,7 @@ export default function LoginForm() {
             loading={isSubmitting}
             >
             Login
-            </Button>
+            </LoadingButton>
             <Link component={RouterLink}  to="/register">
                 Don't have account yet. Register Here!
             </Link>
