@@ -19,29 +19,44 @@ export default function Orders() {
   const [end_loc, setEndLoc] = React.useState("");
   const [status, setStatus] = React.useState("");
   const [inputEl , setUpdate] = React.useState(null);
-
+  const [farray , setFilteredArray] = React.useState([]);
   const filterData = () =>{
-    if (order_id.length >= 0 )
+    let result;
+    if (order_id.length > 0 )
     {
-      orderArray.filter((x) => {return x.id === order_id });
+      console.log("id");
+
+      result =  orderArray.filter((x) => {return x.id.toLowerCase() === order_id.toLowerCase() });
     }
-    if (order_date.length >= 0 )
+    if (order_date.length > 0 )
     {
-      orderArray.filter((x) => {return x.pickup_date === order_date });
+      console.log("date");
+
+      result =  orderArray.filter((x) => {return x.pickup_date.toLowerCase() === order_date.toLowerCase() });
     }    
-    if (start_loc.length >= 0 )
+    if (start_loc.length > 0 )
     {
-      orderArray.filter((x) => {return x.start_loc === start_loc });
+      console.log("loc");
+
+      result =  orderArray.filter((x) => {return x.start_loc.toLowerCase() === start_loc.toLowerCase() });
     }    
-    if (end_loc.length >= 0 )
+    if (end_loc.length > 0 )
     {
-      orderArray.filter((x) => {return x.end_loc === end_loc });
+      console.log("loc2");
+
+      result =  orderArray.filter((x) => {return x.end_loc.toLowerCase() === end_loc.toLowerCase() });
     }
-    if (status.length >= 0 )
+    if (status.length > 0 )
+    {      
+         result =   orderArray.filter((x) => {return x?.status === status });  
+    }
+    if(status === "")
     {
-      orderArray.filter((x) => {return x?.status === status });
+       result  = orderArray;
     }
-    console.log("r" , orderArray);
+    console.log("r" , result);
+    setFilteredArray(result);
+    // dispatch(fetchAllOrdersAction(result) , user?.account_type)
 
   };
 
@@ -78,6 +93,8 @@ export default function Orders() {
         dispatch(
           fetchAllOrdersAction(res['data'], user?.account_type)
         )
+        setFilteredArray(res['data']);
+
       }).catch();
   };
 
@@ -132,10 +149,10 @@ export default function Orders() {
             label="Status"
             onChange={handleChange3}
           >
-
+            <MenuItem default value={""}>All</MenuItem>
             <MenuItem value={"pending"}>Pending</MenuItem>
             <MenuItem value={"transporter_assigned"}>Transporter Assigned</MenuItem>
-            <MenuItem value={"driver_assigned"}>Driver Assigned</MenuItem>
+            <MenuItem value={"assigned"}>Driver Assigned</MenuItem>
             <MenuItem value={"completed"}>completed</MenuItem>
 
           </Select>
@@ -147,7 +164,9 @@ export default function Orders() {
 
       <Divider sx={{ marginBottom: '5%' }} />
       <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
-        {orderArray.map((value) => (
+        {
+        
+        farray.map((value) => (
           <Grid item xs={2} sm={4} md={4} key={value.id}>
 
             <OrderCard order={value}  setUpdate = {setUpdate} />
@@ -157,7 +176,7 @@ export default function Orders() {
 
         }
         {
-          orderArray.length === 0 ? "No Orders present" : ""
+          farray.length === 0 ? "No Orders present" : ""
         }
       </Grid>
 
