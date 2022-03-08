@@ -328,7 +328,7 @@ export default function MultiActionAreaCard(props) {
           <AssignDriver  order={props.order} setUpdate = {props.setUpdate} />: null
         }
 
-        <Button component={RouterLink}  to={`/app/order-details/${props.order?.id}`} >
+        <Button  component={RouterLink}  to={`/app/order-details/${props.order?.id}`} >
           Track/Order details       
         </Button>
         </Box>   

@@ -181,21 +181,33 @@ export default function CreateOrder() {
                 onChange={handleChange3}
               >
                 
-                <MenuItem value={"Small"}>Small (capacity upto 300)</MenuItem>
-                <MenuItem value={"Medium"}> Medium (capacity upto 500)</MenuItem>
-                <MenuItem value={"Large"}>Large (capacity upto 1000)</MenuItem>
+                <MenuItem value={"Small"}>Small (capacity upto 300kg)</MenuItem>
+                <MenuItem value={"Medium"}> Medium (capacity upto 500kg)</MenuItem>
+                <MenuItem value={"Large"}>Large (capacity upto 1000kg)</MenuItem>
               </Select>
             </FormControl>
 
-            <TextField
-                fullWidth
-                autoComplete="Type of Material"
-                type="text"
-                key = "material"
+            <FormControl fullWidth>
+              <InputLabel id="demo-simple-select-label">Type of Material</InputLabel>
+              <Select
+                itemType='text'
                 label="Type of Material"
-                value={material}
+                value = {material}
                 onChange={handleChange4}
-            />
+                // onChange={}
+              >
+    
+                   <MenuItem  value={"Pharamaceuticals"}>{"Pharamaceuticals"}  </MenuItem>
+                   <MenuItem  value={"Wearables"}>{"Wearables"}  </MenuItem>
+                   <MenuItem  value={"Construction"}>{"Construction"}  </MenuItem>
+                   <MenuItem  value={"Furniture"}>{"Furniture"}  </MenuItem>
+                   <MenuItem  value={"Food"}>{"Food"}  </MenuItem>
+                   <MenuItem  value={"Clothing"}>{"Clothing"}  </MenuItem>
+                   <MenuItem  value={"Other"}>{"Other"}  </MenuItem>
+                   
+
+              </Select>
+            </FormControl>
 
             <FormControl fullWidth>
               <InputLabel id="demo-simple-select-label">Weight</InputLabel>

@@ -97,14 +97,31 @@ export default function AddDriver() {
             />
 
 
-            <TextField
+            {/* <TextField
                 fullWidth
                 autoComplete="Truck No"
                 type="text"
                 label="Designation"
                 value={designation}
                 onChange={handleChange2}
-            />
+            /> */}
+            <FormControl fullWidth>
+              <InputLabel id="demo-simple-select-label">Designation</InputLabel>
+              <Select
+
+                value={designation}
+                key = "type"
+                label="Designation"
+                onChange={handleChange2}
+              >
+                
+                <MenuItem value={"Senior Driver"}>Senior Driver</MenuItem>
+                <MenuItem value={"Junior Driver"}>Junior Driver</MenuItem>
+                <MenuItem value={"Training Driver"}>Training Driver</MenuItem>
+              </Select>
+            </FormControl>
+
+
             <TextField
                 fullWidth
                 label="Address"

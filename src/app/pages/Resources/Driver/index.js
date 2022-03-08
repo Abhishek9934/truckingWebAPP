@@ -32,7 +32,7 @@ export default function Driver() {
       <Button variant="contained" sx={{ marginBottom: '2%', marginLeft: '85%' }} component={RouterLink} to="/app/adddriver">
         Add Driver
       </Button>
-      <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
+      <Grid container spacing={{ xs: 0, md: 1 }} columns={{ xs: 4, sm: 8, md: 12 }}>
         {driverArray.map((value) => (
           <Grid item xs={2} sm={4} md={4} key={value.id}>
 

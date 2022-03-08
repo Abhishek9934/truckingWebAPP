@@ -166,22 +166,30 @@ export default function AddTruck() {
                 onChange={handleChange4}
 
             /> */}
-            <TextField
+            {/* <TextField
                 fullWidth
                 type="text"
                 label="Capacity"
                 value = {capacity}
                 onChange={handleChange5}
-            />
-
-            {/* <TextField
-                fullWidth
-                type="text"
-                label="Status"
-                value = {status}
-               
-                onChange={handleChange6}
             /> */}
+            <FormControl fullWidth>
+              <InputLabel id="demo-simple-select-label">Capacity</InputLabel>
+              <Select
+                labelId="demo-simple-select-label"
+                id="demo-simple-select"
+                value={capacity}
+                key = "type"
+                label="Capacity"
+                onChange={handleChange5}
+              >
+                
+                <MenuItem value={"300kg"}>300kg</MenuItem>
+                <MenuItem value={"500kg"}>500kg</MenuItem>
+                <MenuItem value={"1000kg"}>1000kg</MenuItem>
+              </Select>
+            </FormControl>
+
               <FormControl fullWidth>
               <InputLabel id="demo-simple-select-label">Status of Truck</InputLabel>
               <Select
